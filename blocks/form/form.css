@@ -1,0 +1,273 @@
+/* Contact-style form layout (inspired by contact-us pattern) */
+main .form-container {
+  max-width: min(var(--grid-container-width), 860px);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-l) var(--content-padding-inline);
+  box-sizing: border-box;
+}
+
+main .form-container .form-wrapper {
+  margin-top: var(--space-m);
+}
+
+.form form,
+main .form form {
+  display: grid;
+  gap: var(--space-s);
+  border: var(--border-heritage);
+  border-radius: var(--border-radius-heritage);
+  padding: var(--space-l);
+  background: light-dark(var(--color-parchment), var(--color-card-dark));
+  color: inherit;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.form [aria-hidden='true'] {
+  display: none;
+}
+
+.form input,
+.form textarea,
+.form select,
+.form button {
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+  font: inherit;
+}
+
+.form input,
+.form textarea,
+.form select {
+  scroll-margin: 1em;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid light-dark(rgb(26 26 26 / 20%), rgb(245 242 237 / 20%));
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: light-dark(var(--color-light), rgb(6 13 13 / 60%));
+  color: inherit;
+  font-size: var(--body-font-size-s);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.form fieldset {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.form input:hover,
+.form textarea:hover,
+.form select:hover {
+  border-color: light-dark(var(--color-rust), var(--color-rust-bright));
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgb(197 160 89 / 12%);
+}
+
+.form input:disabled,
+.form textarea:disabled,
+.form select:disabled,
+.form input[readonly],
+.form textarea[readonly],
+.form select[readonly] {
+  opacity: 0.6;
+  background: transparent;
+  color: inherit;
+}
+
+.form input[type='checkbox'],
+.form input[type='radio'] {
+  width: unset;
+}
+
+.form .form-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.form .form-field > label:first-child,
+.form .form-field > legend {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+}
+
+.form label[data-required]::after,
+.form legend[data-required]::after {
+  content: '*';
+  margin-left: 0.25ch;
+  color: inherit;
+}
+
+.form .form-field + .form-field {
+  margin-top: 0;
+}
+
+.form .form-field.checkbox-field label,
+.form .form-field.radio-field label {
+  position: relative;
+  padding-left: calc(1em + 1ch);
+  font-size: var(--body-font-size-s);
+  line-height: 44px;
+  cursor: pointer;
+}
+
+.form .form-field.checkbox-field label input,
+.form .form-field.radio-field label input,
+.form .form-field.toggle-field label input {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  margin: 0;
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+}
+
+@media (width >= 600px) {
+  .form form,
+  main .form form {
+    padding: var(--space-xl);
+  }
+
+
+  .form .form-field.checkbox-field,
+  .form .form-field.radio-field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25ch 1em;
+  }
+}
+
+/* Toggle field */
+.form .form-field.toggle-field label {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1ch;
+  min-height: 44px;
+}
+
+.form .form-field.toggle-field label input {
+  width: 2em;
+  opacity: 0;
+  border-radius: 50%;
+}
+
+.form .form-field.toggle-field label span {
+  position: relative;
+  width: calc(2em + 2px);
+  height: calc(1em + 2px);
+  border-radius: 1em;
+  border: 1px solid currentcolor;
+  background: currentcolor;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.form .form-field.toggle-field label span::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: inherit;
+  transition: left 0.2s;
+}
+
+.form .form-field.toggle-field label input:checked + span {
+  opacity: 1;
+}
+
+.form .form-field.toggle-field label input:checked + span::after {
+  left: calc(100% - 1em);
+}
+
+.form .field-help-text {
+  margin-top: 0.2em;
+  color: inherit;
+  opacity: 0.8;
+  font-size: var(--body-font-size-xs);
+}
+
+.form .form-status {
+  margin: var(--space-s) 0 0;
+  font-size: var(--body-font-size-s);
+  color: inherit;
+  opacity: 0.9;
+}
+
+/* Buttons – primary submit, secondary reset */
+.form .button-wrapper {
+  margin-top: var(--space-s);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-s);
+}
+
+.form .button-wrapper button {
+  width: auto;
+  min-width: fit-content;
+}
+
+.form .button-wrapper button.button {
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.form .button-wrapper button.button:not(.secondary) {
+  border: 1px solid light-dark(var(--color-rust), var(--color-rust-bright));
+  background: light-dark(var(--color-rust), var(--color-rust-bright));
+  color: var(--color-parchment);
+}
+
+.form .button-wrapper button.button:disabled,
+.form .button-wrapper button.button:hover:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form .button-wrapper button.button:not(.secondary):hover {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px light-dark(rgb(161 79 43 / 25%), rgb(197 160 89 / 25%));
+}
+
+.form .button-wrapper button.button.secondary {
+  border: 1px solid light-dark(var(--color-rust), var(--color-rust-bright));
+  background: transparent;
+  color: light-dark(var(--color-rust), var(--color-rust-bright));
+}
+
+.form .button-wrapper button.button.secondary:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-2px);
+}
