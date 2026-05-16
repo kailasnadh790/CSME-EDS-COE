@@ -204,9 +204,14 @@ header nav .nav-brand a:any-link:focus-visible {
   opacity: 0.85;
 }
 
+header nav .nav-brand .icon {
+  width: 36px;
+  height: 36px;
+}
+
 header nav .nav-brand :is(img, svg) {
-  width: min(200px, 42vw);
-  height: 45px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -727,8 +732,8 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
     }
   
     header nav .nav-brand :is(img, svg) {
-      width: min(138px, 37vw);
-      height: 36px;
+      width: 30px;
+      height: 30px;
     }
 
     header nav .nav-tools {
@@ -762,8 +767,8 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
     }
   
     header nav .nav-brand :is(img, svg) {
-      width: min(120px, 40vw);
-      height: 38px;
+      width: 28px;
+      height: 28px;
     }
   
     header nav .nav-tools .nav-search-input {
@@ -796,7 +801,6 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
   /* brand: left, no shrink */
   header .nav-brand {
     flex: 0 0 auto;
-    flex-basis: 150px;
   }
 
   /* sections: nav items flow from logo, horizontal nav with dropdowns */
