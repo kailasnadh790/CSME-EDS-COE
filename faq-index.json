@@ -1,0 +1,107 @@
+{
+  "total": 20,
+  "offset": 0,
+  "limit": 20,
+  "data": [
+    {
+      "question": "What controls what Universal Editor can select and edit on a page?",
+      "answer": "Universal Editor uses HTML instrumentation in the rendered page. The main identifiers are documented attributes such as data-aue-resource, data-aue-prop, data-aue-type, data-aue-model, and data-aue-filter.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "Is this the same authoring model as classic AEM editable templates and component policies?",
+      "answer": "No. It is a different model. Universal Editor + Edge Delivery Services relies on page instrumentation, models, filters, metadata, and CSS/JavaScript in the Edge Delivery project rather than classic editable-template and policy mechanics.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "What replaces templates, policies, and initial content in this model?",
+      "answer": "Editable templates map to page archetypes + metadata + block structure. Template policies map to filters + models + validation. Initial content maps to starter pages / seeded structures. Style system maps to CSS, block options, and metadata-driven styles.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "Can classic AEM components and EDS blocks be mixed freely on the same page?",
+      "answer": "The supported target model for AEM authoring with Edge Delivery Services is a block/section-based page structure authored through Universal Editor. Customers should treat this as a modern block-based authoring architecture, not as a classic hybrid Page Editor page.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "What is the recommended approach to avoid duplicating components?",
+      "answer": "Use AEM as the content and governance system, Universal Editor for visual authoring, and Edge Delivery Services blocks for delivery and front-end behavior. Avoid parallel implementations of the same feature in both a classic AEM component model and a separate Edge Delivery block model.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "How are authoring restrictions enforced?",
+      "answer": "Restrictions are enforced through filters controlling what can be inserted, models controlling what properties are available, metadata and project logic by page type, and server-side validation where hard enforcement is required.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "How are styles applied in Universal Editor + EDS?",
+      "answer": "Styles are applied through CSS in the Edge Delivery project, semantic markup, block options / metadata-driven classes, and design-system-driven implementation. This differs from the classic AEM style system approach.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "What is the best architecture for large sites?",
+      "answer": "For larger implementations, the recommendation is a shared block library, a small number of page archetypes, and page-type differentiation through metadata, styles, and block rules. This is more scalable than reproducing a large classic template hierarchy.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "Why might preview or publish not open the expected URL?",
+      "answer": "Common causes include preview URL configuration not matching the desired target, project-specific path mapping differences, and differences between AEM author-side preview behavior and Edge Delivery preview/live URLs. Universal Editor supports custom preview URLs, so behavior depends on project setup.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "Where should customers look for the right preview and live URLs?",
+      "answer": "The most reliable source is the project's documented preview domain, live domain, path mapping rules, and custom preview URL behavior. Teams should document these explicitly rather than assuming the editor will always infer the shareable URL automatically.",
+      "category": "AEM Authoring + Universal Editor"
+    },
+    {
+      "question": "What is Edge Delivery Services?",
+      "answer": "Edge Delivery Services is Adobe's modern content delivery platform that serves pages from the edge of the network. It achieves near-instant page loads, perfect Lighthouse scores, and supports document-based, AEM Document Authoring, or Universal Editor authoring models.",
+      "category": "Edge Delivery Services General"
+    },
+    {
+      "question": "How does content get from author to delivery?",
+      "answer": "Content authored in documents (Google Docs, SharePoint) or AEM is processed through the Edge Delivery pipeline and served as optimized HTML/CSS/JS from the CDN edge. There is no traditional build step — code runs as native ES modules in the browser.",
+      "category": "Edge Delivery Services General"
+    },
+    {
+      "question": "What are the performance expectations?",
+      "answer": "EDS sites consistently achieve 100/100 Lighthouse scores across Performance, Accessibility, Best Practices, and SEO. Superior LCP, FID, and CLS scores translate directly into better search rankings and measurable business outcomes.",
+      "category": "Edge Delivery Services General"
+    },
+    {
+      "question": "What technology stack does EDS use?",
+      "answer": "Plain HTML, CSS, and JavaScript with no proprietary frameworks. Git-based workflows, no build step, and automatic code-splitting via the /blocks/ folder structure. This enables faster developer velocity and lower total cost of ownership.",
+      "category": "Edge Delivery Services General"
+    },
+    {
+      "question": "How does EDS integrate with the Adobe ecosystem?",
+      "answer": "EDS integrates seamlessly with Adobe Analytics, Target, AEM Assets, and the broader Experience Cloud. The architecture is composable and open to third-party services as well.",
+      "category": "Edge Delivery Services General"
+    },
+    {
+      "question": "What is DA.live?",
+      "answer": "DA.live (Document Authoring live) is Adobe's lightweight, browser-based document authoring environment for Edge Delivery Services. It provides a streamlined content editing experience directly in the browser without requiring a full AEM author instance.",
+      "category": "DA.live"
+    },
+    {
+      "question": "How does DA.live differ from Google Docs or SharePoint authoring?",
+      "answer": "DA.live is purpose-built for EDS content authoring. It provides block-aware editing, live preview integration, and native EDS metadata support — features not available in generic document editors. It runs entirely in the browser with no desktop software required.",
+      "category": "DA.live"
+    },
+    {
+      "question": "Can DA.live be used alongside Universal Editor?",
+      "answer": "Yes. DA.live and Universal Editor serve complementary purposes. DA.live is ideal for document-centric content creation, while Universal Editor provides visual, in-context editing. Teams can choose the right tool for each content type and workflow.",
+      "category": "DA.live"
+    },
+    {
+      "question": "What content types work best with DA.live?",
+      "answer": "DA.live excels at text-heavy content like articles, blog posts, landing pages, and documentation. It supports blocks, metadata, and section structures native to EDS, making it straightforward for authors familiar with document-based workflows.",
+      "category": "DA.live"
+    },
+    {
+      "question": "Is DA.live suitable for enterprise-scale projects?",
+      "answer": "Yes. DA.live supports collaboration, versioning, and integration with AEM's content governance capabilities. For enterprise deployments, it can be combined with AEM's permission model and workflow orchestration to support large teams and complex approval processes.",
+      "category": "DA.live"
+    }
+  ]
+}
