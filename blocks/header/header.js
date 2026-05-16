@@ -539,11 +539,12 @@ export default async function decorate(block) {
   if (!nav.getAttribute('aria-label')) nav.setAttribute('aria-label', 'Main');
   if (!nav.getAttribute('aria-expanded')) nav.setAttribute('aria-expanded', 'false');
 
-  ['brand', 'sections', 'tools'].forEach((c, i) => nav.children[i]?.classList.add(`nav-${c}`));
+  const contentDivs = [...nav.children].filter((el) => el.tagName === 'DIV' && !el.classList.contains('nav-hamburger'));
+  ['brand', 'sections', 'tools'].forEach((c, i) => contentDivs[i]?.classList.add(`nav-${c}`));
 
   const tools = nav.querySelector('.nav-tools');
-  if (tools && nav.children.length > 3) {
-    [...nav.children].slice(3).forEach((extra) => {
+  if (tools && contentDivs.length > 3) {
+    contentDivs.slice(3).forEach((extra) => {
       while (extra.firstElementChild) tools.append(extra.firstElementChild);
       extra.remove();
     });

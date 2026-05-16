@@ -81,7 +81,7 @@ header nav[aria-expanded='true'] {
   grid-template:
     'hamburger brand tools' var(--nav-height)
     'sections sections sections' 1fr / auto 1fr auto;
-  overflow: hidden;
+  overflow: hidden auto;
   min-height: 100dvh;
 }
 
@@ -205,8 +205,8 @@ header nav .nav-brand a:any-link:focus-visible {
 }
 
 header nav .nav-brand .icon.icon-logo {
-    position: relative;
-    top: 5px;
+    display: inline-flex;
+    align-items: center;
   }
 
 header nav .nav-brand :is(img, svg) {
