@@ -138,34 +138,10 @@ function loadErrorPage(main) {
   }
 }
 
-/**
- * Inline SVG icons that need to inherit currentColor (e.g. logo).
- * Replaces <img src="…/icon.svg"> with the actual <svg> element
- * so CSS color and light-dark() work across themes.
- * @param {Element} scope element tree to search within
- */
-async function inlineColorIcons(scope) {
-  const icons = scope.querySelectorAll('.icon.icon-logo img[src$=".svg"]');
-  icons.forEach(async (img) => {
-    try {
-      const resp = await fetch(img.src);
-      if (!resp.ok) return;
-      const text = await resp.text();
-      const tmp = document.createElement('div');
-      tmp.innerHTML = text;
-      const svg = tmp.querySelector('svg');
-      if (!svg) return;
-      svg.setAttribute('role', 'img');
-      svg.setAttribute('aria-label', img.alt || 'Logo');
-      img.replaceWith(svg);
-    } catch (e) { /* keep <img> fallback */ }
-  });
-}
 
 export function decorateMain(main) {
   decorateButtons(main);
   decorateIcons(main);
-  inlineColorIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
@@ -276,19 +252,6 @@ async function loadLazy(doc) {
     doc.body.prepend(sentinel);
     scrollObserver.observe(sentinel);
   }
-
-  /* inline logo SVGs in header/footer once they are decorated */
-  const waitAndInline = (el) => {
-    const observer = new MutationObserver(() => {
-      if (el.querySelector('.icon.icon-logo img[src$=".svg"]')) {
-        observer.disconnect();
-        inlineColorIcons(el);
-      }
-    });
-    observer.observe(el, { childList: true, subtree: true });
-  };
-  waitAndInline(headerEl);
-  waitAndInline(footerEl);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

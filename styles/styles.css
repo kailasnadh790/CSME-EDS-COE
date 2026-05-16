@@ -546,20 +546,6 @@ main img {
   width: 100%;
 }
 
-/* Global logo: adaptive color and consistent size everywhere */
-.icon.icon-logo {
-  width: 200px;
-  height: 45px;
-  color: light-dark(var(--color-rust), var(--color-rust-bright));
-}
-
-main .icon.icon-logo {
-  display: inline-block;
-  vertical-align: middle;
-  padding-right: 10px;
-  margin-bottom: 4px;
-}
-
 /* Reserve space for unsized images to reduce CLS */
 main img:not([width], [height]) {
   aspect-ratio: 16 / 9;

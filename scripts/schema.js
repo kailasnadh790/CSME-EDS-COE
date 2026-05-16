@@ -57,7 +57,6 @@ function buildOrganizationSchema() {
     '@type': 'Organization',
     name: 'diyFIRE',
     url: 'https://demo.bbird.live',
-    logo: 'https://demo.bbird.live/icons/logo.svg',
     description: 'A step-by-step, uniquely Canadian path to financial independence.',
     sameAs: [],
   };
@@ -109,10 +108,6 @@ function buildArticleSchema() {
   schema.publisher = {
     '@type': 'Organization',
     name: 'diyFIRE',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://demo.bbird.live/icons/logo.svg',
-    },
   };
 
   return schema;

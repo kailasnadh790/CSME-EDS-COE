@@ -204,11 +204,6 @@ header nav .nav-brand a:any-link:focus-visible {
   opacity: 0.85;
 }
 
-header nav .nav-brand .icon.icon-logo {
-    display: inline-flex;
-    align-items: center;
-  }
-
 header nav .nav-brand :is(img, svg) {
   width: min(200px, 42vw);
   height: 45px;
@@ -735,12 +730,7 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
       width: min(138px, 37vw);
       height: 36px;
     }
-  
-    header nav .nav-brand .icon.icon-logo {
-      width: 100px;
-      height: 40px;
-    }
-  
+
     header nav .nav-tools {
       gap: 4px;
       min-width: 0;
