@@ -235,8 +235,6 @@ header nav .nav-sections ul {
   padding: 0;
   margin: 0;
   font-size: var(--nav-primary-size);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
 }
 
 @media (width <= 899px) {
@@ -517,8 +515,6 @@ header nav .nav-sections button.button {
   padding: 0;
   min-width: 0;
   font-weight: var(--nav-primary-weight);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
 }
 
 header nav .nav-sections a.button:any-link:hover,
@@ -787,10 +783,10 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0 var(--space-xl);
+    gap: 0 var(--space-m);
     max-width: var(--nav-desktop-max-width);
     margin: 0 auto;
-    padding: 0 var(--space-xl);
+    padding: 0 var(--space-l);
     min-height: var(--nav-height);
   }
 
@@ -821,7 +817,7 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
   header nav .nav-sections .default-content-wrapper > ul {
     justify-content: flex-start;
     display: flex;
-    gap: var(--space-l);
+    gap: var(--space-s);
     margin: 0;
   }
 
@@ -858,8 +854,8 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
     align-items: center;
     min-height: var(--nav-height);
     padding: 0;
-    font-size: var(--body-font-size-l);
-    font-weight: var(--nav-primary-weight);
+    font-size: var(--body-font-size-s);
+    font-weight: 600;
     letter-spacing: 0.01em;
   }
 
