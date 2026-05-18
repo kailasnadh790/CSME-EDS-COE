@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity -- card variants are ordered by feature */
+
 /* Default cards */
 
 .cards > ul {
@@ -105,6 +107,62 @@
   margin: 0;
   padding: var(--space-m);
   color: light-dark(var(--color-gray-600), var(--color-gray-400));
+}
+
+/* ==========================================================================
+   Wide variant — full-width cards with expandable content
+   ========================================================================== */
+
+.cards.wide > ul {
+  grid-template-columns: 1fr;
+  max-width: none;
+}
+
+.cards.wide > ul > li {
+  border-radius: 8px;
+}
+
+.cards.wide > ul > li:hover {
+  transform: none;
+}
+
+.cards.wide .cards-card-body {
+  position: relative;
+}
+
+.cards.wide .cards-card-body.is-collapsed {
+  max-height: 120px;
+  overflow: hidden;
+}
+
+.cards.wide .cards-card-body.is-collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, light-dark(var(--color-light), var(--color-card-dark)));
+  pointer-events: none;
+}
+
+.cards.wide .cards-expand-btn {
+  display: block;
+  margin: var(--space-s) var(--space-m) var(--space-m);
+  padding: var(--space-xs) var(--space-m);
+  border: 1px solid light-dark(var(--color-gray-200), rgb(255 255 255 / 12%));
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-brand);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.cards.wide .cards-expand-btn:hover {
+  background: light-dark(rgb(161 79 43 / 6%), rgb(197 160 89 / 10%));
+  color: var(--color-link-hover);
 }
 
 /* ==========================================================================

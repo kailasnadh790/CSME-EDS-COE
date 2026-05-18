@@ -182,11 +182,29 @@ function decorateDefault(block) {
   block.replaceChildren(ul);
 }
 
+function decorateWide(block) {
+  decorateDefault(block);
+
+  block.querySelectorAll('.cards-card-body').forEach((body) => {
+    if (body.scrollHeight > 140) {
+      body.classList.add('is-collapsed');
+      const btn = createTag('button', { class: 'cards-expand-btn', type: 'button' }, 'See more');
+      btn.addEventListener('click', () => {
+        const collapsed = body.classList.toggle('is-collapsed');
+        btn.textContent = collapsed ? 'See more' : 'See less';
+      });
+      body.closest('li')?.append(btn);
+    }
+  });
+}
+
 export default async function decorate(block) {
   if (block.classList.contains('links')) {
     await decorateLinks(block);
   } else if (block.classList.contains('bento')) {
     decorateBento(block);
+  } else if (block.classList.contains('wide')) {
+    decorateWide(block);
   } else {
     decorateDefault(block);
   }
