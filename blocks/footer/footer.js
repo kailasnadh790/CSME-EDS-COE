@@ -18,8 +18,13 @@ export default async function decorate(block) {
     block.append(footer);
   }
 
-  // merge social icons into copyright row
-  const sections = block.querySelectorAll('.section');
+  const sections = [...block.querySelectorAll('.section')];
+
+  // label sections for reliable CSS targeting
+  if (sections.length >= 2) sections[1].classList.add('footer-nav');
+  if (sections.length >= 3) sections[sections.length - 1].classList.add('footer-copyright');
+
+  // merge social icons into copyright row (when 4+ sections exist)
   if (sections.length >= 4) {
     const copyrightSection = sections[2];
     const socialSection = sections[3];
