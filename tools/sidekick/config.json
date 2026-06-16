@@ -2,12 +2,12 @@
   "project": "DIYFire",
   "plugins": [
     {
-      "id": "experimentation",
+      "id": "quick-edit",
       "titleI18n": {
-        "en": "Experimentation"
+        "en": "Quick Edit"
       },
       "environments": ["dev", "preview"],
-      "event": "experimentation"
+      "event": "quick-edit"
     }
   ]
 }

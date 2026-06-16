@@ -320,18 +320,7 @@ if (!window.hlx?.suppressLoadPage) {
     if (searchParams.get('dapreview')) {
       import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadPage));
     }
-    if (searchParams.get('daexperiment')) {
-      import('https://da.live/nx/public/plugins/exp/exp.js');
-    }
   }());
-
-  if (document.querySelector('aem-sidekick')) {
-    import('./sidekick.js');
-  } else {
-    document.addEventListener('sidekick-ready', () => {
-      import('./sidekick.js');
-    }, { once: true });
-  }
 
   window.addEventListener('aem-theme-change', (e) => {
     applyTheme(e.detail?.theme);
