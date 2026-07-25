@@ -1,4 +1,5 @@
 import { createTag } from '../../scripts/shared.js';
+import { toClassName } from '../../scripts/aem.js';
 import { extendSchema } from '../../scripts/schema.js';
 
 const FAQ_INDEX_PATH = '/faq-index.json';
@@ -39,11 +40,80 @@ function buildFaqItem(faq) {
   return item;
 }
 
-function buildCategoryGroup(category, faqs) {
-  const group = createTag('div', { class: 'faq-category' });
-  group.append(createTag('h3', { class: 'faq-category-heading' }, category));
-  faqs.forEach((faq) => group.append(buildFaqItem(faq)));
-  return group;
+function buildAccordion(faqs) {
+  const list = createTag('div', { class: 'faq-list' });
+  faqs.forEach((faq) => list.append(buildFaqItem(faq)));
+  return list;
+}
+
+function selectTab(tabs, panels, index) {
+  tabs.forEach((tab, i) => {
+    const isSelected = i === index;
+    tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+    tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+    tab.classList.toggle('is-active', isSelected);
+    panels[i].hidden = !isSelected;
+  });
+}
+
+function buildTabs(block, grouped) {
+  const categories = Object.keys(grouped);
+
+  const tablist = createTag('div', {
+    class: 'faq-tablist',
+    role: 'tablist',
+    'aria-label': 'FAQ categories',
+  });
+  const panelsWrap = createTag('div', { class: 'faq-panels' });
+
+  const tabs = [];
+  const panels = [];
+
+  categories.forEach((category, index) => {
+    const slug = toClassName(category);
+    const tabId = `faq-tab-${slug}`;
+    const panelId = `faq-panel-${slug}`;
+    const isFirst = index === 0;
+
+    const tab = createTag('button', {
+      class: `faq-tab${isFirst ? ' is-active' : ''}`,
+      id: tabId,
+      type: 'button',
+      role: 'tab',
+      'aria-controls': panelId,
+      'aria-selected': isFirst ? 'true' : 'false',
+      tabindex: isFirst ? '0' : '-1',
+    }, category);
+
+    const panel = createTag('div', {
+      class: 'faq-tabpanel',
+      id: panelId,
+      role: 'tabpanel',
+      'aria-labelledby': tabId,
+      hidden: isFirst ? undefined : true,
+    });
+    panel.append(buildAccordion(grouped[category]));
+
+    tab.addEventListener('click', () => selectTab(tabs, panels, index));
+    tab.addEventListener('keydown', (e) => {
+      let target = null;
+      if (e.key === 'ArrowRight') target = (index + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') target = (index - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') target = 0;
+      else if (e.key === 'End') target = tabs.length - 1;
+      if (target === null) return;
+      e.preventDefault();
+      selectTab(tabs, panels, target);
+      tabs[target].focus();
+    });
+
+    tabs.push(tab);
+    panels.push(panel);
+    tablist.append(tab);
+    panelsWrap.append(panel);
+  });
+
+  block.append(tablist, panelsWrap);
 }
 
 export default async function decorate(block) {
@@ -74,9 +144,12 @@ export default async function decorate(block) {
     grouped[faq.category].push(faq);
   });
 
-  Object.keys(grouped).forEach((category) => {
-    block.append(buildCategoryGroup(category, grouped[category]));
-  });
+  const categoryKeys = Object.keys(grouped);
+  if (categoryKeys.length > 1) {
+    buildTabs(block, grouped);
+  } else {
+    block.append(buildAccordion(grouped[categoryKeys[0]]));
+  }
 
   extendSchema('WebPage', {
     '@type': 'FAQPage',

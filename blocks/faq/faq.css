@@ -3,18 +3,54 @@ main .faq {
   margin: 0 auto;
 }
 
-main .faq .faq-category {
-  margin-bottom: var(--space-xl);
+main .faq .faq-tablist {
+  display: flex;
+  gap: var(--space-s);
+  border-bottom: 1px solid light-dark(rgb(0 0 0 / 8%), rgb(255 255 255 / 8%));
+  margin: 0 auto var(--space-l);
+  max-width: 800px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-main .faq .faq-category-heading {
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-s);
+main .faq .faq-tablist::-webkit-scrollbar {
+  display: none;
+}
+
+main .faq .faq-tab {
+  flex: 0 0 auto;
+  padding: var(--space-s) var(--space-m);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  color: var(--color-muted);
+  white-space: nowrap;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+main .faq .faq-tab:hover {
+  color: var(--color-link-hover);
+}
+
+main .faq .faq-tab.is-active {
   color: var(--color-brand);
-  margin-bottom: var(--space-m);
-  padding-bottom: var(--space-s);
-  border-bottom: var(--border-heritage);
-  letter-spacing: -0.01em;
+  border-bottom-color: var(--color-accent);
+}
+
+main .faq .faq-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+main .faq .faq-list,
+main .faq .faq-tabpanel {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 main .faq .faq-item {
@@ -82,7 +118,7 @@ main .faq .faq-empty {
 }
 
 @media (width >= 900px) {
-  main .faq .faq-category-heading {
-    font-size: var(--heading-font-size-m);
+  main .faq .faq-tab {
+    font-size: var(--body-font-size-l);
   }
 }
