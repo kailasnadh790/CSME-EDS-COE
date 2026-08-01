@@ -1,0 +1,21 @@
+name = "csme-eds-coe-chatbot"
+main = "index.js"
+compatibility_date = "2026-02-16"
+account_id = "ac7ee4615628005dc5ba0a22f0aae2a6"
+
+# Serve the chatbot endpoint from the site domain under /chatbot/*.
+# Update pattern/zone_name to match the production domain when deploying.
+# routes = [
+#    { pattern = "your-domain.example/chatbot/*", zone_name = "example" },
+# ]
+
+[vars]
+SITE_ORIGIN = "https://main--csme-eds-coe--kailasnadh790.aem.live"
+ALLOWED_ORIGIN = "*"
+MODEL = "claude-haiku-4-5-20251001"
+
+# ANTHROPIC_API_KEY is a secret — set it with:
+#   wrangler secret put ANTHROPIC_API_KEY --config ./workers/chatbot/wrangler.toml
+
+[observability.logs]
+enabled = true

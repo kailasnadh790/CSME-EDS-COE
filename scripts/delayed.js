@@ -25,6 +25,18 @@ async function injectSocialShareBlock() {
   await loadBlock(block);
 }
 
+async function injectChatbot() {
+  if (document.querySelector('.chatbot-widget')) return;
+
+  const block = buildBlock('chatbot', [[]]);
+  const wrapper = createTag('div');
+  wrapper.append(block);
+  document.body.append(wrapper);
+
+  decorateBlock(block);
+  await loadBlock(block);
+}
+
 async function loadCloudflareAnalytics() {
   if (!window.location.hostname.includes('bbird.live')) return;
 
@@ -37,6 +49,7 @@ async function loadCloudflareAnalytics() {
 async function init() {
   await loadCloudflareAnalytics();
   await injectSocialShareBlock();
+  await injectChatbot();
 }
 
 init();

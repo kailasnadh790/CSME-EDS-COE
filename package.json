@@ -27,7 +27,10 @@
     "tail:cdn": "wrangler tail --config ./workers/cdn/wrangler.toml",
     "dev:cloneit-token": "wrangler dev --config ./workers/cloneit_token/wrangler.toml",
     "deploy:cloneit-token": "wrangler deploy --config ./workers/cloneit_token/wrangler.toml",
-    "tail:cloneit-token": "wrangler tail --config ./workers/cloneit_token/wrangler.toml"
+    "tail:cloneit-token": "wrangler tail --config ./workers/cloneit_token/wrangler.toml",
+    "dev:chatbot": "wrangler dev --config ./workers/chatbot/wrangler.toml",
+    "deploy:chatbot": "wrangler deploy --config ./workers/chatbot/wrangler.toml",
+    "tail:chatbot": "wrangler tail --config ./workers/chatbot/wrangler.toml"
   },
   "repository": {
     "type": "git",
